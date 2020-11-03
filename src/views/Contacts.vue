@@ -1,19 +1,17 @@
 <template>
-  <!-- <h1>
-    это компонент с контактами Contacts
-  </h1> -->
-
-  <section id="contact">
-    
-  </section>
+  <div>
+    <Contact />
+    <Contact />
+    <Contact />
+  </div>
 </template>
 
 <script>
+import Contact from '@/components/Contact.vue'
 
-</script>
-
-<style scoped>
-  #contact {
-    border: 2px solid red;
+export default {
+  components: {
+    Contact
   }
-</style>
+}
+</script>
