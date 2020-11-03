@@ -4,7 +4,9 @@
       <router-link to="/">Contacts</router-link>
     </div>
 
-    <router-view/>
+    <div class="container">
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -28,5 +30,11 @@
       color: #42b983;
     }
   }
+}
+
+.container {
+  width: 95%;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 </style>
