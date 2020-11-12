@@ -24,8 +24,10 @@
   #contact {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     width: 100%;
     height: 50px;
+    padding: 5px 10px;
     border-radius: 4px;
     background-color: #fff;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -59,12 +61,11 @@
     color: #2f9e59;
     text-decoration: none;
     margin-left: auto;
-    margin-right: 16px;
+    margin-right: 6px;
     cursor: pointer;
 
     &-icon {
       position: relative;
-      top: -1px;
       vertical-align: middle;
       transition: transform 0.3s ease;
     }
