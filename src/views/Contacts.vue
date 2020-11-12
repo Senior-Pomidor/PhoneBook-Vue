@@ -59,7 +59,7 @@ export default {
     position: relative;
     width: 4px;
     height: 20px; 
-    background: #1c8622;
+    background: #2f9e59;
   }
   .btn__add-icon:after {
     position: absolute;
@@ -68,6 +68,6 @@ export default {
     width: 20px;
     height: 4px;
     content: "";
-    background: #1c8622;
+    background: #2f9e59;
   }
 </style>
