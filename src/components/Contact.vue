@@ -104,4 +104,10 @@
       }
     }
   }
+
+  @media (max-width: 400px) {
+    .contact {
+      font-size: 0.9em;
+    }
+  }
 </style>

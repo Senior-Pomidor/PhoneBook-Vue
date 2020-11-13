@@ -1,7 +1,7 @@
 <template>
   <section class="contacts">
     <div class="contacts__action-btns">
-      <button class="btn contacts__btn--add">
+      <button class="btn contacts__btn--add" @click.prevent="isOpenForm = true">
         <i class="btn__add-icon"></i>
       </button>
     </div>
@@ -9,21 +9,34 @@
     <Contact />
     <Contact />
     <Contact />
+
+    <AddContact v-if="isOpenForm" @close="isOpenForm = false"/>
   </section>
 </template>
 
 <script>
 import Contact from '@/components/Contact.vue'
+import AddContact from '@/components/AddContact.vue'
 
 export default {
   components: {
-    Contact
+    Contact,
+    AddContact
+  },
+  data() {
+    return {
+      isOpenForm: false
+    }
+  },
+  methods: {
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
   .contacts {
+    position: relative;
     padding: 20px 0;
   }
 
