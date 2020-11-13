@@ -1,13 +1,13 @@
 <template>
-	<section id="contact">
-    <span class="contact__name">
+	<div class="contact">
+    <span class="contact__info">
       Dow John
     </span>
-    <span class="contact__phone">
+    <span class="contact__info">
       +7 999 228 14 88
     </span>
-    <span class="contact__email">
-      johndow@gmail.ru
+    <span class="contact__info contact__info--email">
+      dowjohn@gmail.ru
     </span>
     <i class="contact__arrow">
       <svg class="contact__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -17,11 +17,11 @@
         </g>
       </svg>
     </i>
-  </section>
+  </div>
 </template>
 
 <style lang="scss">
-  #contact {
+  .contact {
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -31,6 +31,7 @@
     border-radius: 4px;
     background-color: #fff;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    cursor: pointer;
 
     &:not(:first-child) {
       margin-top: 5px;
@@ -50,6 +51,23 @@
     &:active {
       opacity: 0.7;
     }
+
+    &__info {
+      position: relative;
+      width: 25%;
+      min-width: 150px;
+      // border: 1px solid green;
+
+      &:not(:first-child):before {
+        position: absolute;
+        left: 0;
+        top: -5px;
+        width: 2px;
+        height: 30px;
+        content: "";
+        background-color: #2f9e59;
+      }
+    }
   }
   
   .contact__arrow {
@@ -62,7 +80,6 @@
     text-decoration: none;
     margin-left: auto;
     margin-right: 6px;
-    cursor: pointer;
 
     &-icon {
       position: relative;
@@ -74,6 +91,17 @@
       transition: stroke-dashoffset .3s ease;
       stroke-dasharray: 95;
       stroke-dashoffset: 95;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .contact__info {
+      width: 45%;
+      min-width: auto;
+
+      &--email {
+        display: none;
+      }
     }
   }
 </style>
