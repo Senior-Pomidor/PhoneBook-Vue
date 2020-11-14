@@ -6,19 +6,23 @@
       </button>
     </div>
 
-    <Contact v-for="contact in contacts" :key="contact.id" :info="contact" />
+    <!-- <router-link to="/contact" :info="contact"> -->
+      <ContactCard v-for="contact in contacts" :key="contact.id" :info="contact" />
+    <!-- </router-link> -->
+
+    
 
     <AddContact v-if="isOpenForm" @close="isOpenForm = false"/>
   </section>
 </template>
 
 <script>
-import Contact from '@/components/Contact.vue'
+import ContactCard from '@/components/ContactCard.vue'
 import AddContact from '@/components/AddContact.vue'
 
 export default {
   components: {
-    Contact,
+    ContactCard,
     AddContact
   },
   data() {
