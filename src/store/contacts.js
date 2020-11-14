@@ -19,6 +19,16 @@ export default {
 			}
 		]
 	},
+	mutations: {
+		addContact(state, contact) {
+			state.contacts.push(contact)
+		}
+	},
+	actions: {
+		// updateContacts({dispatch, commit}, info) {
+		// 	commit('addContact', info)
+		// }
+	},
 	getters: {
 		contacts: state => state.contacts
 	}
