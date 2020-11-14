@@ -4,22 +4,22 @@
 		<form class="add-contact__form" action="">
 			<div class="add-contact__input-field">
 				<label for="add-contact__name">Name</label>
-				<input class="add-contact__input" type="text" id="add-contact__name" v-model="name">
+				<input class="add-contact__input" type="text" id="add-contact__name" v-model="info.name">
 			</div>
 
 			<div class="add-contact__input-field">
 				<label for="add-contact__phone">Phone</label>
-				<input class="add-contact__input" type="text" id="add-contact__phone" v-model="phone">
+				<input class="add-contact__input" type="text" id="add-contact__phone" v-model="info.phone">
 			</div>
 
 			<div class="add-contact__input-field">
 				<label for="add-contact__email">Email</label>
-				<input class="add-contact__input" type="text" id="add-contact__email" v-model="email">
+				<input class="add-contact__input" type="text" id="add-contact__email" v-model="info.email">
 			</div>
 
 			<div class="add-contact__input-field">
 				<button class="add-contact__btn add-contact__btn--cancel" @click.prevent="close">Cancel</button>
-				<button class="add-contact__btn add-contact__btn--submit" type="submit">Add contact</button>
+				<button class="add-contact__btn add-contact__btn--submit" @click.prevent="addContact" type="submit">Add contact</button>
 			</div>
 		</form>
 	</div>
@@ -27,14 +27,24 @@
 
 <script>
 export default {
-	data: () => ({
-		name: '',
-		phone: '',
-		email: ''
-	}),
+	data() {
+		return {
+			info: {
+				id: null,
+				name: '',
+				phone: '',
+				email: ''
+			}
+		}
+	},
 	methods: {
 		close() {
 			this.$emit('close')
+		},
+		addContact() {
+			this.info.id = Date.now()
+			this.$store.dispatch('updateContacts', this.info)
+			this.close()
 		}
 	}
 }

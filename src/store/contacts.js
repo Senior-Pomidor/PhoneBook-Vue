@@ -25,9 +25,9 @@ export default {
 		}
 	},
 	actions: {
-		// updateContacts({dispatch, commit}, info) {
-		// 	commit('addContact', info)
-		// }
+		updateContacts({commit}, info) {
+			commit('addContact', info)
+		}
 	},
 	getters: {
 		contacts: state => state.contacts
