@@ -5,10 +5,8 @@
         <i class="btn__add-icon"></i>
       </button>
     </div>
-    
-    <Contact />
-    <Contact />
-    <Contact />
+
+    <Contact v-for="contact in contacts" :key="contact.id" :info="contact" />
 
     <AddContact v-if="isOpenForm" @close="isOpenForm = false"/>
   </section>
@@ -25,7 +23,25 @@ export default {
   },
   data() {
     return {
-      isOpenForm: false
+      isOpenForm: false,
+      contacts: [
+        {
+          id: '1',
+          name: 'Dow John',
+          phone: '+7 999 228 14 88',
+          email: 'dowjohn@gmail.com'
+        }, {
+          id: '2',
+          name: 'Dow John 2',
+          phone: '+7 999 228 14 88',
+          email: 'dowjohn@gmail.com'
+        }, {
+          id: '3',
+          name: 'Dow John 3',
+          phone: '+7 999 228 14 88',
+          email: 'dowjohn@gmail.com'
+        }
+      ]
     }
   },
   methods: {

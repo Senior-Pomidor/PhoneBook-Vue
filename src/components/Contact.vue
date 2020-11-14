@@ -1,13 +1,13 @@
 <template>
 	<div class="contact">
     <span class="contact__info">
-      Dow John
+      {{ info.name }}
     </span>
     <span class="contact__info">
-      +7 999 228 14 88
+      {{ info.phone }}
     </span>
     <span class="contact__info contact__info--email">
-      dowjohn@gmail.ru
+      {{ info.email }}
     </span>
     <i class="contact__arrow">
       <svg class="contact__arrow-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -19,6 +19,14 @@
     </i>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    info: Object
+  }
+}
+</script>
 
 <style lang="scss">
   .contact {
@@ -56,6 +64,7 @@
       position: relative;
       width: 25%;
       min-width: 150px;
+      min-height: 1em;
       // border: 1px solid green;
 
       &:not(:first-child):before {
