@@ -42,9 +42,13 @@ export default {
 			this.$emit('close')
 		},
 		addContact() {
-			this.info.id = Date.now()
-			this.$store.dispatch('updateContacts', this.info)
-			this.close()
+			if (this.info.name && this.info.phone) {
+				this.info.id = Date.now()
+				this.$store.dispatch('updateContacts', this.info)
+				this.close()
+			} else {
+				alert('Введите имя и телефон')
+			}
 		}
 	}
 }
