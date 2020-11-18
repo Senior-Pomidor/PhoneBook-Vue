@@ -24,17 +24,17 @@ export default {
 		addContact(state, contact) {
 			state.contacts.push(contact)
 		},
-		// addContactId(state, contactId) {
-		// 	state.contactId = contactId
-		// }
+		updateContactInfo(state, data) {
+			state.contacts[data.index][data.key] = data.value
+		}
 	},
 	actions: {
 		updateContacts({commit}, info) {
 			commit('addContact', info)
 		},
-		// setContactId({commit}, contactId) {
-		// 	commit('addContactId', contactId)
-		// }
+		updateContactInfo({commit}, data) {
+			commit('updateInfo', data)
+		}
 	},
 	getters: {
 		contacts: state => state.contacts
