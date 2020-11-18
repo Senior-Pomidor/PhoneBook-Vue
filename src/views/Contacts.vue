@@ -6,12 +6,15 @@
       </button>
     </div>
 
-    <!-- <router-link to="/contact" :info="contact"> -->
-      <ContactCard v-for="contact in contacts" :key="contact.id" :info="contact" />
-    <!-- </router-link> -->
-
+    <router-link
+      v-for="contact in contacts"
+      :key="contact.id"
+      :to="{name: 'Contact', params: {id: contact.id}}"
+      class="contacts__contact-link"
+    >
+      <ContactCard :info="contact" />
+    </router-link>
     
-
     <AddContact v-if="isOpenForm" @close="isOpenForm = false"/>
   </section>
 </template>
@@ -32,7 +35,10 @@ export default {
     }
   },
   methods: {
-
+    // setContactId(contactId) {
+    //   console.log('123')
+    //   this.$store.actions.dispatch('setContactId', contactId)
+    // }
   }
 }
 </script>
@@ -41,6 +47,14 @@ export default {
   .contacts {
     position: relative;
     padding: 20px 0;
+
+    &__contact-link {
+      display: block;
+      
+      &:not(:first-child) {
+        margin-top: 5px;
+      }
+    }
   }
 
   .contacts__action-btns {

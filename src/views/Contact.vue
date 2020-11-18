@@ -4,8 +4,11 @@
 
 <script>
 export default {
-	props: {
-		info: Object
+	// props: {
+	// 	id: String
+	// },
+	mounted() {
+		console.log(this.$route.params.id)
 	}
 }
 </script>

@@ -10,9 +10,10 @@ const routes = [
     component: () => import('@/views/Contacts.vue')
   },
   {
-    path: '/contact',
+    path: '/contact::id',
     name: 'Contact',
-    component: () => import('@/views/Contact.vue')
+    component: () => import('@/views/Contact.vue'),
+    props: true
   }
 ]
 

@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Contacts</router-link>
-      <router-link to="/contact">Contact</router-link>
+      <router-link :to="{name: 'Contact'}">Contact</router-link>
     </div>
 
     <div class="container">
