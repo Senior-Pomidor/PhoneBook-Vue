@@ -43,6 +43,7 @@ export default {
 
     &:hover {
       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+      color: #2f9e59;
 
       .contact__arrow-icon {
         transform: translate3d(5px, 0, 0);
