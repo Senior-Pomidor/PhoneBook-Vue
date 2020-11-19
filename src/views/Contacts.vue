@@ -7,7 +7,7 @@
     </div>
 
     <router-link
-      v-for="contact in contacts"
+      v-for="contact in allContacts"
       :key="contact.id"
       :to="{name: 'Contact', params: {id: contact.id}}"
       class="contacts__contact-link"
@@ -30,8 +30,12 @@ export default {
   },
   data() {
     return {
-      isOpenForm: false,
-      contacts: this.$store.getters.contacts
+      isOpenForm: false
+    }
+  },
+  computed: {
+    allContacts() {
+      return this.$store.getters.allContacts
     }
   },
   methods: {

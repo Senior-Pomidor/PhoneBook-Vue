@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import contacts from './contacts'
+import contact from './contact'
 
 Vue.use(Vuex)
 
@@ -12,6 +12,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    contacts
+    contact
   }
 })

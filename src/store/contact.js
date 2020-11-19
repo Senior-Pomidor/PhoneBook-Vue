@@ -40,6 +40,6 @@ export default {
 		}
 	},
 	getters: {
-		contacts: state => state.contacts
+		allContacts: state => state.contacts
 	}
 }
