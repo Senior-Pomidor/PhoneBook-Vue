@@ -2,41 +2,50 @@
 <div>
 <h1>Contact</h1>
 	{{ id }} <br>
-	{{ info }} <br>
+	{{ contactInfo }} <br>
 	{{ index }} <br>
-	<button @click.prevent="updateInfo(index, 'email', 'changed@mail.ru')">Update</button>
+	<button @click.prevent="updateInfo()">Update</button>
 </div>
 	
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
-	// data() {
-	// 	return {
-			
-	// 	}
-	// },
+	data() {
+		return {
+			// data: {
+			// 	name: '',
+			// 	phone: '',
+			// 	email: ''
+			// }
+		}
+	},
 	mounted() {
-		// console.log(this.data)
+		this.updateContactInfo(this.id)
 	},
 	computed: {
 		id() {
 			return this.$route.params.id
 		},
-		info() {
-			let contacts = this.$store.getters.allContacts
-			return contacts.find(contact => contact.id === this.id)
-		},
 		index() {
+			// чтобы менять в contacts в сторе
 			let contacts = this.$store.getters.allContacts
 			return contacts.findIndex(contact => contact.id === this.id)
+		},
+		contactInfo() {
+			return this.$store.getters.contact
 		}
 	},
 	methods: {
-		updateInfo(index, key, value) {
-			let data = {index, key, value}
-			this.$store.dispatch('updateContactInfo', data)
+		...mapMutations(['updateContactInfo']),
+		updateInfo() {
+			console.log(this.contactInfo)
 		}
+	},
+	beforeDestroy() {
+		// для очистки contact в store
+		this.updateContactInfo()
 	}
 }
 </script>

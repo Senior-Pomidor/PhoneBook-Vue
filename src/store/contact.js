@@ -1,28 +1,7 @@
-// import { from } from 'core-js/fn/array'
-// import { contacts } from './model.js'
-
 export default {
 	state: {
-		// contacts: [
-		// 	{
-		// 		id: '1',
-		// 		name: 'Dow John',
-		// 		phone: '+7 999 228 14 88',
-		// 		email: 'dowjohn@gmail.com'
-		// 	}, {
-		// 		id: '2',
-		// 		name: 'Dow John 2',
-		// 		phone: '+7 999 228 14 88',
-		// 		email: 'dowjohn@gmail.com'
-		// 	}, {
-		// 		id: '3',
-		// 		name: 'Dow John 3',
-		// 		phone: '+7 999 228 14 88',
-		// 		email: 'dowjohn@gmail.com'
-		// 	}
-		// ],
-		contacts: []
-		// contactId: ''
+		contacts: [],
+		contact: {}
 	},
 	mutations: {
 		updateContacts(state, contacts) {
@@ -31,9 +10,15 @@ export default {
 		createContact(state, newContact) {
 			state.contacts.push(newContact)
 		},
-		updateContactInfo(state, data) {
-			state.contacts[data.index][data.key] = data.value
-		}
+		updateContactInfo(state, id) {
+			// будем получать контакт целиком и устанавливать значения в массив и в contact
+			let allContacts = state.contacts
+		// для очистки contact в store
+			state.contact = id ? allContacts.find(contact => contact.id === id) : {}
+		},
+		// updateContactInfo(state, data) {
+		// 	state.contacts[data.index][data.key] = data.value
+		// }
 	},
 	actions: {
 		async fetchContacts({commit}) {
@@ -45,11 +30,12 @@ export default {
 		// updateContacts({commit}, info) {
 		// 	commit('createContact', info)
 		// },
-		updateContactInfo({commit}, data) {
-			commit('updateContactInfo', data)
-		}
+		// updateContactInfo({commit}, data) {
+		// 	commit('updateContactInfo', data)
+		// }
 	},
 	getters: {
-		allContacts: state => state.contacts
+		allContacts: state => state.contacts,
+		contact: state => state.contact
 	}
 }
