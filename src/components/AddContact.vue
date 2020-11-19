@@ -19,13 +19,15 @@
 
 			<div class="add-contact__input-field">
 				<button class="add-contact__btn add-contact__btn--cancel" @click.prevent="close">Cancel</button>
-				<button class="add-contact__btn add-contact__btn--submit" @click.prevent="addContact" type="submit">Add contact</button>
+				<button class="add-contact__btn add-contact__btn--submit" @click.prevent="submit" type="submit">Add contact</button>
 			</div>
 		</form>
 	</div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
 	data() {
 		return {
@@ -38,13 +40,16 @@ export default {
 		}
 	},
 	methods: {
+		...mapMutations(['createContact']),
 		close() {
 			this.$emit('close')
 		},
-		addContact() {
+		submit() {
 			if (this.info.name && this.info.phone) {
 				this.info.id = Date.now()
-				this.$store.dispatch('updateContacts', this.info)
+				// this.$store.dispatch('updateContacts', this.info)
+				this.createContact(this.info)
+				// добавляем сразу через мутацию потому что пока без бэкенда
 				this.close()
 			} else {
 				alert('Введите имя и телефон')

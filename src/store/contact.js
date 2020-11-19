@@ -28,8 +28,8 @@ export default {
 		updateContacts(state, contacts) {
 			state.contacts = contacts
 		},
-		addContact(state, contact) {
-			state.contacts.push(contact)
+		createContact(state, newContact) {
+			state.contacts.push(newContact)
 		},
 		updateContactInfo(state, data) {
 			state.contacts[data.index][data.key] = data.value
@@ -42,9 +42,9 @@ export default {
 			let contacts = await model.contacts
 			commit('updateContacts', contacts)
 		},
-		updateContacts({commit}, info) {
-			commit('addContact', info)
-		},
+		// updateContacts({commit}, info) {
+		// 	commit('createContact', info)
+		// },
 		updateContactInfo({commit}, data) {
 			commit('updateContactInfo', data)
 		}
