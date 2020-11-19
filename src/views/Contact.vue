@@ -24,11 +24,11 @@ export default {
 			return this.$route.params.id
 		},
 		info() {
-			let contacts = this.$store.getters.contacts
+			let contacts = this.$store.getters.allContacts
 			return contacts.find(contact => contact.id === this.id)
 		},
 		index() {
-			let contacts = this.$store.getters.contacts
+			let contacts = this.$store.getters.allContacts
 			return contacts.findIndex(contact => contact.id === this.id)
 		}
 	},

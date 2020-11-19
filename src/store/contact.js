@@ -1,4 +1,5 @@
-import { contacts } from './model.js'
+// import { from } from 'core-js/fn/array'
+// import { contacts } from './model.js'
 
 export default {
 	state: {
@@ -20,10 +21,13 @@ export default {
 		// 		email: 'dowjohn@gmail.com'
 		// 	}
 		// ],
-		contacts: contacts
+		contacts: []
 		// contactId: ''
 	},
 	mutations: {
+		updateContacts(state, contacts) {
+			state.contacts = contacts
+		},
 		addContact(state, contact) {
 			state.contacts.push(contact)
 		},
@@ -32,6 +36,12 @@ export default {
 		}
 	},
 	actions: {
+		async fetchContacts({commit}) {
+			// имитация получения данных с бэкенда
+			let model =  await import('./model.js');
+			let contacts = await model.contacts
+			commit('updateContacts', contacts)
+		},
 		updateContacts({commit}, info) {
 			commit('addContact', info)
 		},

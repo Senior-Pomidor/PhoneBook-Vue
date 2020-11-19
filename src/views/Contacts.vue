@@ -20,8 +20,9 @@
 </template>
 
 <script>
-import ContactCard from '@/components/ContactCard.vue'
-import AddContact from '@/components/AddContact.vue'
+import ContactCard from '@/components/ContactCard.vue';
+import AddContact from '@/components/AddContact.vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   components: {
@@ -33,16 +34,16 @@ export default {
       isOpenForm: false
     }
   },
-  computed: {
-    allContacts() {
-      return this.$store.getters.allContacts
-    }
-  },
-  methods: {
-    // setContactId(contactId) {
-    //   console.log('123')
-    //   this.$store.actions.dispatch('setContactId', contactId)
-    // }
+  // computed: {
+  //   allContacts() {
+  //     return this.$store.getters.allContacts
+  //   }
+  // },
+  computed: mapGetters(['allContacts']),
+  methods: mapActions(['fetchContacts']),
+  async mounted() {
+    // this.$store.dispatch('fetchContacts');
+    this.fetchContacts();
   }
 }
 </script>
