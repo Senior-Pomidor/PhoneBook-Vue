@@ -47,7 +47,6 @@ export default {
 		submit() {
 			if (this.info.name && this.info.phone) {
 				this.info.id = Date.now()
-				// this.$store.dispatch('updateContacts', this.info)
 				this.createContact(this.info)
 				// добавляем сразу через мутацию потому что пока без бэкенда
 				this.close()

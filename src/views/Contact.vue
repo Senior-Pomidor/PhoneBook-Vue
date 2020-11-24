@@ -10,19 +10,19 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 export default {
 	data() {
 		return {
-			// data: {
-			// 	name: '',
-			// 	phone: '',
-			// 	email: ''
-			// }
+			info: {
+				name: '',
+				phone: '',
+				email: ''
+			}
 		}
 	},
 	mounted() {
-		this.updateContactInfo(this.id)
+		this.setContactInfo(this.id)
 	},
 	computed: {
 		id() {
@@ -38,14 +38,16 @@ export default {
 		}
 	},
 	methods: {
-		...mapMutations(['updateContactInfo']),
+		...mapMutations(['setContactInfo']),
+		...mapActions(['changeContact']),
 		updateInfo() {
-			console.log(this.contactInfo)
+			this.info.id = this.id
+			this.changeContact(this.info)
 		}
 	},
 	beforeDestroy() {
 		// для очистки contact в store
-		this.updateContactInfo()
+		this.setContactInfo()
 	}
 }
 </script>

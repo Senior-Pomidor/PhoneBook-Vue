@@ -10,15 +10,17 @@ export default {
 		createContact(state, newContact) {
 			state.contacts.push(newContact)
 		},
-		updateContactInfo(state, id) {
+		setContactInfo(state, id) {
 			// будем получать контакт целиком и устанавливать значения в массив и в contact
 			let allContacts = state.contacts
 		// для очистки contact в store
 			state.contact = id ? allContacts.find(contact => contact.id === id) : {}
 		},
-		// updateContactInfo(state, data) {
-		// 	state.contacts[data.index][data.key] = data.value
-		// }
+		updateContact(state, info) {
+			state.contact = info
+			let index = state.contacts.findIndex(contact => contact.id === info.id)
+			state.contacts[index] = info
+		}
 	},
 	actions: {
 		async fetchContacts({commit}) {
@@ -27,12 +29,9 @@ export default {
 			let contacts = await model.contacts
 			commit('updateContacts', contacts)
 		},
-		// updateContacts({commit}, info) {
-		// 	commit('createContact', info)
-		// },
-		// updateContactInfo({commit}, data) {
-		// 	commit('updateContactInfo', data)
-		// }
+		changeContact({commit}, info) {
+			commit('updateContact', info)
+		}
 	},
 	getters: {
 		allContacts: state => state.contacts,
