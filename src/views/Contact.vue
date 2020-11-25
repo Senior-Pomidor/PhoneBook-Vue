@@ -4,6 +4,7 @@
 			<div class="form-add__input-field" 
 				v-for="name in Object.keys(contactInfo)"
 				:key="name"
+				v-show="name !== 'id'"
 			>
 				<input class="form-add__input" type="text" :placeholder="name"
 					:disabled="disabled.indexOf(name) !== -1 ? true : false"
@@ -14,6 +15,9 @@
 				>
 			</div>
 
+			<InputField v-for="field in fields" :key="field" @saveInfo="saveFieldInfo"/>
+			<!-- <component v-bind:is="InputField"></component> -->
+
 			<div class="form-add__input-field">
 				<button class="form-add__btn form-add__btn--submit" @click.prevent="addField()">Add info</button>
 				<button class="form-add__btn form-add__btn--submit" type="submit">Save info</button>
@@ -23,9 +27,13 @@
 </template>
 
 <script>
+import InputField from '@/components/InputField.vue'
 import { mapActions, mapMutations } from 'vuex'
 
 export default {
+	components: {
+		InputField
+	},
 	data() {
 		return {
 			info: {
@@ -33,12 +41,13 @@ export default {
 				phone: '',
 				email: ''
 			},
-			disabled: ['id', 'name', 'phone', 'email']
+			disabled: ['id', 'name', 'phone', 'email'],
+			fields: []
 		}
 	},
 	mounted() {
 		this.setContactInfo(this.id)
-		console.log(this.contactInfo, '123')
+		// console.log(this.contactInfo, '123')
 		this.info = this.contactInfo
 	},
 	computed: {
@@ -61,11 +70,19 @@ export default {
 			this.info.id = this.id
 			this.changeContact(this.info)
 			alert('Данные успешно сохранены!')
+			
+			this.$emit('save');
 		},
 		addField() {
-			this.info.new = '123'
+			// this.info.new = '123'
 			// console.log(this.contactInfo)
+			this.fields.push(Date.now())
 			this.setContactInfo(this.id)
+		},
+		saveFieldInfo(data) {
+			// добавить все объекты в data,
+			// this.info[data.key] = data.value
+			console.log(data)
 		}
 	},
 	beforeDestroy() {
