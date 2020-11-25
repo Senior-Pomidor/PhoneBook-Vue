@@ -1,16 +1,9 @@
 <template>
-<!-- <div>
-<h1>Contact</h1>
-	{{ id }} <br>
-	{{ contactInfo }} <br>
-	{{ index }} <br>
-	<button @click.prevent="updateInfo()">Update</button>
-</div> -->
-
-<div id="contact">
-		<form class="add-contact__form form-add">
+	<div id="contact">
+		<form class="add-contact__form form-add" id="contact-form-add" @submit.prevent="updateInfo()">
 			<div class="form-add__input-field" 
-				v-for="name in Object.keys(contactInfo)" :key="name"
+				v-for="name in Object.keys(contactInfo)"
+				:key="name"
 			>
 				<input class="form-add__input" type="text" :placeholder="name"
 					:disabled="disabled.indexOf(name) !== -1 ? true : false"
@@ -21,23 +14,17 @@
 				>
 			</div>
 
-			<!-- <div class="form-add__input-field">
-				<input class="form-add__input" type="text" placeholder="Phone" disabled>
-				<span class="separator">:</span>
-				<input class="form-add__input" type="text" v-model="info.phone">
-			</div> -->
-
 			<div class="form-add__input-field">
-				<button class="form-add__btn form-add__btn--submit" type="submit">Add info</button>
+				<button class="form-add__btn form-add__btn--submit" @click.prevent="addField()">Add info</button>
 				<button class="form-add__btn form-add__btn--submit" type="submit">Save info</button>
 			</div>
 		</form>
 	</div>
-	
 </template>
 
 <script>
 import { mapActions, mapMutations } from 'vuex'
+
 export default {
 	data() {
 		return {
@@ -51,6 +38,7 @@ export default {
 	},
 	mounted() {
 		this.setContactInfo(this.id)
+		console.log(this.contactInfo, '123')
 		this.info = this.contactInfo
 	},
 	computed: {
@@ -72,6 +60,12 @@ export default {
 		updateInfo() {
 			this.info.id = this.id
 			this.changeContact(this.info)
+			alert('Данные успешно сохранены!')
+		},
+		addField() {
+			this.info.new = '123'
+			// console.log(this.contactInfo)
+			this.setContactInfo(this.id)
 		}
 	},
 	beforeDestroy() {
@@ -84,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 #contact {
 	border-radius: 2px;
-	margin: 0 auto;
+	// margin: 0 auto;
 }
 
 @media(max-width: 425px) {

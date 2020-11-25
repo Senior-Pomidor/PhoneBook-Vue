@@ -13,6 +13,7 @@ export default {
 		setContactInfo(state, id) {
 			// будем получать контакт целиком и устанавливать значения в массив и в contact
 			let allContacts = state.contacts
+			// console.log(allContacts.find(contact => contact.id === id), '123')
 		// для очистки contact в store
 			state.contact = id ? allContacts.find(contact => contact.id === id) : {}
 		},
@@ -31,7 +32,11 @@ export default {
 		},
 		changeContact({commit}, info) {
 			commit('updateContact', info)
-		}
+		},
+		// async updateContactInfo({commit, dispatch}, id) {
+		// 	await dispatch('fetchContacts')
+		// 	commit('setContactInfo', id)
+		// }
 	},
 	getters: {
 		allContacts: state => state.contacts,
