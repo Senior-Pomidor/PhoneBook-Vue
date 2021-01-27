@@ -54,8 +54,12 @@ export default {
 	},
 	mounted() {
 		this.setContact(this.id)
-		// console.log(this.contactInfo, '123')
-		this.info = this.contactInfo
+
+		setTimeout(() => {
+			// задержка чтобы данные успели прогрузиться из store
+			// в store тоже задержка
+			this.info = this.contactInfo
+		}, 0)
 	},
 	computed: {
 		id() {

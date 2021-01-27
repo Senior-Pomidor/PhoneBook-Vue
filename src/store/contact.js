@@ -15,10 +15,14 @@ export default {
 		},
 		setContactInfo(state, id) {
 			// будем получать контакт целиком и устанавливать значения в массив и в contact
-			let allContacts = state.contacts
+			// задержка чтобы данные успели прогрузиться в store
+			setTimeout(function() {
+				// let allContacts = state.contacts
+				let allContacts = state.contacts
 
-			// для очистки contact в store
-			state.contact = id ? allContacts.find(contact => contact.id === id) : {}
+				// для очистки contact в store
+				state.contact = id ? allContacts.find(contact => contact.id === id) : {}
+			}, 0)
 		},
 		updateContact(state, info) {
 			state.contact = info
