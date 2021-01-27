@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
 	data() {
 		return {
@@ -23,6 +25,7 @@ export default {
 		// this.field.value = ''
 	},
 	methods: {
+		...mapActions(['removeField']),
 		saveInfo() {
 			this.$emit('saveInfo', this.field)
 		},
@@ -31,6 +34,8 @@ export default {
 			this.$destroy();
 			// удаление из DOM родительского компонента
 			this.$el.parentNode.removeChild(this.$el);
+			// удаление из store
+			this.removeField(Object.values(this.field))
 			alert('Запись успешно удалена.')
 		}
 	}
