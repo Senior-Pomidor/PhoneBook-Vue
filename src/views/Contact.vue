@@ -1,5 +1,6 @@
 <template>
-	<div id="contact">
+	<section id="contact" class="section--contact">
+		<h1>{{ info.name }}</h1>
 		<form class="add-contact__form form-add" id="contact-form-add" @submit.prevent="updateInfo()">
 			<div class="form-add__input-field">
 				<a class="remove" @click.prevent="remove()"></a>
@@ -30,7 +31,7 @@
 				<button class="form-add__btn form-add__btn--submit" type="submit">Save info</button>
 			</div>
 		</form>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -183,8 +184,12 @@ $primary-color-active: #55d486;
 }
 
 #contact {
-	border-radius: 2px;
+	// border-radius: 2px;
 	// margin: 0 auto;
+}
+
+.section--contact {
+	padding: 20px 0;
 }
 
 .remove {

@@ -1,5 +1,6 @@
 <template>
   <section class="contacts">
+    <h1>Contacts</h1>
     <div class="contacts__action-btns">
       <button class="btn contacts__btn--add" @click.prevent="isOpenForm = true">
         <i class="btn__add-icon"></i>
