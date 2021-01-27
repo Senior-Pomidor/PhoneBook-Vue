@@ -1,5 +1,8 @@
 <template>
 	<section id="contact" class="section--contact">
+		<a class="icon" @click.prevent="back()">
+			<div class="arrow"></div>
+		</a>
 		<h1>{{ info.name }}</h1>
 		<form class="add-contact__form form-add" id="contact-form-add" @submit.prevent="updateInfo()">
 			<div class="form-add__input-field">
@@ -134,6 +137,9 @@ export default {
 
 			document.addEventListener('click', remove)
 			alert('Запись успешно удалена!')
+		},
+		back() {
+			this.$router.push('/')
 		}
 	},
 	beforeDestroy() {
@@ -150,46 +156,69 @@ $primary-color: #2f9e59;
 $primary-color-hover: #118d40;
 $primary-color-active: #55d486;
 
-
-
-.plus-btn {
-	--color: #2f9e59;
-
-  height:35px;
-  width: 35px;
-  padding:7px;
-  box-sizing:border-box;
-  background:
-    linear-gradient(#fff, rgb(255, 255, 255)) content-box,
-    linear-gradient(#fff, #fff) content-box,
-    var(--color);
-  background-position:center;
-  background-size: 100% 2px, 2px 100%;
-  background-repeat:no-repeat;
-	border: none;
-	border-radius: 50%;
-	outline: none;
-
-	&:hover {
-		--color:  #118d40;
-	}
-
-	&:active {
-		--color:  #55d486;
-	}
-}
-
-.radius {
-  border-radius:50%;
-}
-
 #contact {
 	// border-radius: 2px;
 	// margin: 0 auto;
 }
 
 .section--contact {
+	position: relative;
 	padding: 20px 0;
+}
+
+
+.icon {
+	display: block;
+  position: absolute;
+  top: 2.2em;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  transform: rotate(180deg);
+	transition: transform .4s;
+
+	&:hover {
+		transform: rotate(180deg) translateX(-10px);
+	}
+
+	&:active {
+		.arrow {
+			background-color: $primary-color-active;
+
+			&::before, &::after {
+				background-color: $primary-color-active;
+			}
+		}
+	}
+}
+
+.arrow {
+  width: 90%;
+  height: 2px;
+  background-color: $primary-color;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+
+	&::after, &::before {
+		content: '';
+		position: absolute;
+		width: 53%;
+		height: 2px;
+		right: 0px;
+		background-color: $primary-color;
+	}
+
+	&::after {
+		top: -5px;
+		transform: rotate(45deg);
+	}
+
+	&::before {
+		top: 5px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+  transform: rotate(-45deg);
+	}
+
+	
 }
 
 .remove {
@@ -200,6 +229,7 @@ $primary-color-active: #55d486;
 	margin-top: 10px;
 	border: 0.07em solid $remove-color;
 	border-radius: 0 0 0.05em 0.05em;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
 	background-image: linear-gradient(
 		to right,
 		transparent 0.17em,
@@ -259,6 +289,39 @@ $primary-color-active: #55d486;
 		opacity: 0.5;
 	}
 }
+
+.plus-btn {
+	--color: #2f9e59;
+
+  height:35px;
+  width: 35px;
+  padding:7px;
+  box-sizing:border-box;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+  background:
+    linear-gradient(#fff, rgb(255, 255, 255)) content-box,
+    linear-gradient(#fff, #fff) content-box,
+    var(--color);
+  background-position:center;
+  background-size: 100% 2px, 2px 100%;
+  background-repeat:no-repeat;
+	border: none;
+	border-radius: 50%;
+	outline: none;
+
+	&:hover {
+		--color:  #118d40;
+	}
+
+	&:active {
+		--color:  #55d486;
+	}
+}
+
+.form-add__btn--submit {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+}
+
 
 @media(max-width: 425px) {
 	.form-add {

@@ -56,6 +56,7 @@ $alert-color: #f00;
 	width: 0.4em;
 	margin-top: 10px;
 	border: 0.07em solid $remove-color;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
 	border-radius: 0 0 0.05em 0.05em;
 	background-image: linear-gradient(
 		to right,
