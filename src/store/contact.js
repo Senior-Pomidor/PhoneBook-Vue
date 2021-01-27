@@ -1,3 +1,5 @@
+import { contacts } from './model.js'
+
 export default {
 	state: {
 		contacts: [],
@@ -21,6 +23,10 @@ export default {
 			state.contact = info
 			let index = state.contacts.findIndex(contact => contact.id === info.id)
 			state.contacts[index] = info
+		},
+		removeContact(state, id) {
+			let index = state.contacts.findIndex(contact => contact.id === id)
+			contacts.splice(index, 1)
 		}
 	},
 	actions: {
@@ -36,7 +42,10 @@ export default {
 		// async updateContactInfo({commit, dispatch}, id) {
 		// 	await dispatch('fetchContacts')
 		// 	commit('setContactInfo', id)
-		// }
+		// },
+		removeContact({commit}, id) {
+			commit('removeContact', id)
+		}
 	},
 	getters: {
 		allContacts: state => state.contacts,

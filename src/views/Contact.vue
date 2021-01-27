@@ -2,7 +2,7 @@
 	<div id="contact">
 		<form class="add-contact__form form-add" id="contact-form-add" @submit.prevent="updateInfo()">
 			<div class="form-add__input-field">
-				<a href="/contacts" class="remove"></a>
+				<a class="remove" @click.prevent="remove()"></a>
 			</div>
 			<div class="form-add__input-field" 
 				v-for="name in Object.keys(contactInfo)"
@@ -68,7 +68,7 @@ export default {
 	},
 	methods: {
 		...mapMutations(['setContactInfo']),
-		...mapActions(['changeContact']),
+		...mapActions(['changeContact', 'removeContact']),
 		updateInfo() {
 			this.info.id = this.id
 			this.changeContact(this.info)
@@ -89,6 +89,11 @@ export default {
 				this.info[data.key] = data.value
 			}
 			// console.log(data)
+		},
+		remove() {
+			this.removeContact(this.id)
+			alert('Контакт успешно удалён.')
+			this.$router.push('/')
 		}
 	},
 	beforeDestroy() {
