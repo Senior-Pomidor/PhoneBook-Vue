@@ -49,7 +49,8 @@ export default {
 				email: ''
 			},
 			disabled: ['id', 'name', 'phone', 'email'],
-			fields: []
+			fields: [],
+			emptyFieldsCount: 0
 		}
 	},
 	mounted() {
@@ -78,19 +79,23 @@ export default {
 		...mapMutations(['setContactInfo']),
 		...mapActions(['setContact', 'changeContact', 'removeContact', 'removeField']),
 		updateInfo() {
-			this.info.id = this.id
-			this.changeContact(this.info)
-
-			// console.log(this.fields)
-			// console.log(this.info)
-
-			// let fields = document.querySelectorAll('.form-add__input-field')
-
+			let fields = Array.from(document.querySelectorAll('.form-add__input-field'))
+			let empty = fields.find(field => {
+				if(field.querySelector('input')) {
+					return field.querySelector('input').value == ""
+				}
+			})
 			
-			
-			alert('Данные успешно сохранены!')
-			
-			this.$emit('save');
+			if (empty) {
+				alert('Заполните или удалите пустые поля!')
+			} else {
+				this.info.id = this.id
+				
+				this.changeContact(this.info)
+				this.$emit('save');
+
+				alert('Данные успешно сохранены!')
+			}	
 		},
 		addField() {
 			// this.info.new = '123'

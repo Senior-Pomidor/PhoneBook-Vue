@@ -34,9 +34,12 @@ export default {
 			this.$destroy();
 			// удаление из DOM родительского компонента
 			this.$el.parentNode.removeChild(this.$el);
-			// удаление из store
-			this.removeField(Object.values(this.field))
-			alert('Запись успешно удалена.')
+			
+			if (this.field.key || this.field.value) {
+				// удаление из store
+				this.removeField(Object.values(this.field))
+				alert('Запись успешно удалена.')
+			}
 		}
 	}
 }
