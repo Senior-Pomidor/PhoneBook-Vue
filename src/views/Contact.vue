@@ -1,6 +1,9 @@
 <template>
 	<div id="contact">
 		<form class="add-contact__form form-add" id="contact-form-add" @submit.prevent="updateInfo()">
+			<div class="form-add__input-field">
+				<a href="/contacts" class="remove"></a>
+			</div>
 			<div class="form-add__input-field" 
 				v-for="name in Object.keys(contactInfo)"
 				:key="name"
@@ -96,9 +99,74 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$remove-color: #a6a9b8;
+$alert-color: #f00;
+
 #contact {
 	border-radius: 2px;
 	// margin: 0 auto;
+}
+
+.remove {
+	position: relative;
+	font-size: 30px;
+	height: 0.5em;
+	width: 0.4em;
+	margin-top: 10px;
+	border: 0.07em solid $remove-color;
+	border-radius: 0 0 0.05em 0.05em;
+	background-image: linear-gradient(
+		to right,
+		transparent 0.17em,
+		$remove-color 0.17em,
+		$remove-color 0.24em,
+		transparent 0.24em
+	);
+
+	&::before {
+		position: absolute;
+		left: -0.125em;
+		bottom: 0.6em;
+		height: 0.07em;
+		width: 0.65em;
+		content: "";
+		background-color: $remove-color;
+	}
+
+	&::after {
+		position: absolute;
+		left: 0.055em;
+		bottom: 0.67em;
+		height: 0;
+		width: 0.25em;
+		content: "";
+		border-bottom: 0.07em solid $remove-color;
+		border-left: 0.02em solid transparent;
+		border-right: 0.02em solid transparent;
+	}
+
+	&:hover {
+		border-color: $alert-color;
+		background-image: linear-gradient(
+			to right,
+			transparent 0.17em,
+			$alert-color 0.17em,
+			$alert-color 0.24em,
+			transparent 0.24em
+		);
+
+		&::after {
+			border-color: $alert-color;
+		}
+
+		&::before {
+			background-color: $alert-color;
+		}
+	}
+
+	&:active {
+		opacity: 0.5;
+	}
 }
 
 @media(max-width: 425px) {
