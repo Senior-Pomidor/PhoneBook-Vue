@@ -5,17 +5,19 @@
 				<a class="remove" @click.prevent="remove()"></a>
 			</div>
 			<div class="form-add__input-field" 
-				v-for="name in Object.keys(contactInfo)"
-				:key="name"
-				v-show="name !== 'id'"
+				v-for="key in Object.keys(contactInfo)"
+				:key="key"
+				v-show="key !== 'id'"
 			>
-				<input class="form-add__input" type="text" :placeholder="name"
-					:disabled="disabled.indexOf(name) !== -1 ? true : false"
+				<input class="form-add__input" type="text" :placeholder="key"
+					:disabled="disabled.indexOf(key) !== -1 ? true : false"
+					:value="key"
 				>
 				<span class="separator">:</span>
-				<input class="form-add__input" type="text" v-model="info[name]"
-					:disabled="name === 'id'? true : false"
+				<input class="form-add__input" type="text" v-model="info[key]"
+					:disabled="key === 'id'? true : false"
 				>
+				<a href="" @click.prevent="removeInfoField">delete</a>
 			</div>
 
 			<InputField v-for="field in fields" :key="field" @saveInfo="saveFieldInfo"/>
@@ -68,10 +70,17 @@ export default {
 	},
 	methods: {
 		...mapMutations(['setContactInfo']),
-		...mapActions(['changeContact', 'removeContact']),
+		...mapActions(['changeContact', 'removeContact', 'removeField']),
 		updateInfo() {
 			this.info.id = this.id
 			this.changeContact(this.info)
+
+			// console.log(this.fields)
+			// console.log(this.info)
+
+			// let fields = document.querySelectorAll('.form-add__input-field')
+
+			
 			
 			alert('Данные успешно сохранены!')
 			
@@ -94,6 +103,24 @@ export default {
 			this.removeContact(this.id)
 			alert('Контакт успешно удалён.')
 			this.$router.push('/')
+		},
+		removeInfoField() {
+			const remove = (evt) => {
+				// получаем ключ и значение удаляемого поля
+				let inputs = evt.target.parentNode.querySelectorAll('input')
+				let key = inputs[0].value
+				let value = inputs[1].value
+				let field = [key, value]
+
+				// удаляем поле со страницы и из store
+				this.removeField(field)
+				evt.target.parentNode.remove()
+
+				// удаляем обработчик чтобы он не срабатывал после выполнения функции
+				document.removeEventListener('click', remove)
+			}
+
+			document.addEventListener('click', remove)
 		}
 	},
 	beforeDestroy() {

@@ -27,6 +27,12 @@ export default {
 		removeContact(state, id) {
 			let index = state.contacts.findIndex(contact => contact.id === id)
 			contacts.splice(index, 1)
+		},
+		removeField(state, field) {
+			// находим индекс контакта у которого совпадают имя поля и значение
+			let index = state.contacts.findIndex(contact => contact[field[0]] === field[1])
+			// удаляем поле у этого контакта
+			delete contacts[index][field[0]]
 		}
 	},
 	actions: {
@@ -45,6 +51,9 @@ export default {
 		// },
 		removeContact({commit}, id) {
 			commit('removeContact', id)
+		},
+		removeField({commit}, field) {
+			commit('removeField', field)
 		}
 	},
 	getters: {

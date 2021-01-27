@@ -18,13 +18,10 @@ export default {
 	},
 	created() {
 		this.$parent.$on('save', this.saveInfo);
-		this.field.key = ''
-		this.field.value = ''
+		// this.field.key = ''
+		// this.field.value = ''
 	},
 	methods: {
-		con() {
-			console.log(this.field)
-		},
 		saveInfo() {
 			this.$emit('saveInfo', this.field)
 		}
