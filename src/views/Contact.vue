@@ -69,6 +69,7 @@ export default {
 		updateInfo() {
 			this.info.id = this.id
 			this.changeContact(this.info)
+			
 			alert('Данные успешно сохранены!')
 			
 			this.$emit('save');
@@ -81,8 +82,10 @@ export default {
 		},
 		saveFieldInfo(data) {
 			// добавить все объекты в data,
-			// this.info[data.key] = data.value
-			console.log(data)
+			if (data.key != '') {
+				this.info[data.key] = data.value
+			}
+			// console.log(data)
 		}
 	},
 	beforeDestroy() {
