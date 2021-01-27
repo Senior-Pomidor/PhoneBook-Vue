@@ -17,7 +17,9 @@
 				<input class="form-add__input" type="text" v-model="info[key]"
 					:disabled="key === 'id'? true : false"
 				>
-				<a href="" @click.prevent="removeInfoField">delete</a>
+				<a class="remove remove--field" @click.prevent="removeInfoField"
+					v-show="disabled.indexOf(key) !== -1 ? false : true"
+				></a>
 			</div>
 
 			<InputField v-for="field in fields" :key="field" @saveInfo="saveFieldInfo"/>
@@ -121,6 +123,7 @@ export default {
 			}
 
 			document.addEventListener('click', remove)
+			alert('Запись успешно удалена!')
 		}
 	},
 	beforeDestroy() {
@@ -177,6 +180,12 @@ $alert-color: #f00;
 		border-right: 0.02em solid transparent;
 	}
 
+	&--field {
+		font-size: 25px;
+		margin-left: 0.25em;
+		margin-top: 0.2em;
+	}
+
 	&:hover {
 		border-color: $alert-color;
 		background-image: linear-gradient(
@@ -215,6 +224,10 @@ $alert-color: #f00;
 		}
 		.separator {
 			display: none;
+		}
+		.remove--field {
+			margin-left: auto;
+			margin-top: 0.5em;
 		}
 	}
 }
