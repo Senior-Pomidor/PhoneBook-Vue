@@ -53,7 +53,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.setContactInfo(this.id)
+		this.setContact(this.id)
 		// console.log(this.contactInfo, '123')
 		this.info = this.contactInfo
 	},
@@ -72,7 +72,7 @@ export default {
 	},
 	methods: {
 		...mapMutations(['setContactInfo']),
-		...mapActions(['changeContact', 'removeContact', 'removeField']),
+		...mapActions(['setContact', 'changeContact', 'removeContact', 'removeField']),
 		updateInfo() {
 			this.info.id = this.id
 			this.changeContact(this.info)
@@ -92,7 +92,7 @@ export default {
 			// this.info.new = '123'
 			// console.log(this.contactInfo)
 			this.fields.push(Date.now())
-			this.setContactInfo(this.id)
+			this.setContact(this.id)
 		},
 		saveFieldInfo(data) {
 			// добавить все объекты в data,
@@ -128,7 +128,7 @@ export default {
 	},
 	beforeDestroy() {
 		// для очистки contact в store
-		this.setContactInfo()
+		this.setContact()
 	}
 }
 </script>

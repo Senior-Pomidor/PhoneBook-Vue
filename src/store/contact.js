@@ -3,7 +3,8 @@ import { contacts } from './model.js'
 export default {
 	state: {
 		contacts: [],
-		contact: {}
+		contact: {},
+		// id: ''
 	},
 	mutations: {
 		updateContacts(state, contacts) {
@@ -15,8 +16,8 @@ export default {
 		setContactInfo(state, id) {
 			// будем получать контакт целиком и устанавливать значения в массив и в contact
 			let allContacts = state.contacts
-			// console.log(allContacts.find(contact => contact.id === id), '123')
-		// для очистки contact в store
+
+			// для очистки contact в store
 			state.contact = id ? allContacts.find(contact => contact.id === id) : {}
 		},
 		updateContact(state, info) {
@@ -41,6 +42,11 @@ export default {
 			let model =  await import('./model.js');
 			let contacts = await model.contacts
 			commit('updateContacts', contacts)
+		},
+		setContact({commit, dispatch}, id) {
+			dispatch('fetchContacts')
+
+			commit('setContactInfo', id)
 		},
 		changeContact({commit}, info) {
 			commit('updateContact', info)
