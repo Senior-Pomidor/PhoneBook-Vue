@@ -26,7 +26,7 @@
 			<!-- <component v-bind:is="InputField"></component> -->
 
 			<div class="form-add__input-field">
-				<button class="form-add__btn form-add__btn--submit" @click.prevent="addField()">Add info</button>
+				<button class="plus-btn" @click.prevent="addField()"></button>
 				<button class="form-add__btn form-add__btn--submit" type="submit">Save info</button>
 			</div>
 		</form>
@@ -145,6 +145,42 @@ export default {
 <style lang="scss" scoped>
 $remove-color: #a6a9b8;
 $alert-color: #f00;
+$primary-color: #2f9e59;
+$primary-color-hover: #118d40;
+$primary-color-active: #55d486;
+
+
+
+.plus-btn {
+	--color: #2f9e59;
+
+  height:35px;
+  width: 35px;
+  padding:7px;
+  box-sizing:border-box;
+  background:
+    linear-gradient(#fff, rgb(255, 255, 255)) content-box,
+    linear-gradient(#fff, #fff) content-box,
+    var(--color);
+  background-position:center;
+  background-size: 100% 2px, 2px 100%;
+  background-repeat:no-repeat;
+	border: none;
+	border-radius: 50%;
+	outline: none;
+
+	&:hover {
+		--color:  #118d40;
+	}
+
+	&:active {
+		--color:  #55d486;
+	}
+}
+
+.radius {
+  border-radius:50%;
+}
 
 #contact {
 	border-radius: 2px;

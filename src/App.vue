@@ -12,6 +12,10 @@
 </template>
 
 <style lang="scss">
+a, button {
+	cursor: pointer;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
