@@ -37,7 +37,9 @@ export default {
 			// находим индекс контакта у которого совпадают имя поля и значение
 			let index = state.contacts.findIndex(contact => contact[field[0]] === field[1])
 			// удаляем поле у этого контакта
-			delete contacts[index][field[0]]
+			if (index !== -1) {
+				delete contacts[index][field[0]]
+			}
 		}
 	},
 	actions: {
