@@ -20,6 +20,7 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # если вы публикуете по адресу https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:Senior-Pomidor/test-vue.git master:gh-pages
+git push -f git@github.com:Senior-Pomidor/PhoneBook-Vue.git master:gh-pages
 
+# https://senior-pomidor.github.io/PhoneBook-Vue/
 cd -
