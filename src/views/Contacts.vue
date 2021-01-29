@@ -68,25 +68,6 @@ export default {
     margin-bottom: 15px;
   }
 
-  .btn {
-    width: 50px;
-    height: 30px;
-    padding: 5px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 4px;
-    outline: none;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-
-    &:hover {
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    }
-
-    &:active {
-      opacity: 0.7;
-    }
-  }
-
   .contacts__btn--add {
     margin-left: auto;
   }

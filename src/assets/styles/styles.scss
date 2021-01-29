@@ -1,0 +1,176 @@
+@import './variables.scss';
+
+a, button {
+	cursor: pointer;
+}
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+  background: rgb(248, 249, 251);
+}
+
+.btn {
+	width: 50px;
+	height: 30px;
+	padding: 5px 10px;
+	background: #fff;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+	&:hover {
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	}
+
+	&:active {
+		opacity: 0.7;
+	}
+}
+
+.form-add {
+	width: 100%;
+	max-width: 570px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	font-size: 1.3em;
+	// border: 1px solid red;
+
+	&__input-field {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		// border: 1px solid blue;
+		padding: 10px 5px;
+
+		&:not(:first-child) {
+			margin-top: 10px;
+		}
+
+		&:not(:last-child) {
+			border-bottom: 1px solid black;
+		}
+	}
+
+	&__input {
+		width: 45%;
+		padding: 5px;
+		border: 1px solid transparent;
+		border-radius: 3px;
+		background-color: #ebedf7;
+
+		&:focus {
+			background-color: transparent;
+			border-color: $primary-color;
+			outline: none;
+		}
+	}
+
+	&__btn {
+		width: 140px;
+		color: #fff;
+		font-size: 1em;
+		padding: 5px 10px;
+		border-radius: 3px;
+		border: none;
+		outline: none;
+
+		&--cancel {
+			background-color: $alert-color;
+
+			&:hover {
+				background-color: $alert-color-hover;
+			}
+
+			&:active {
+				background-color: $alert-color-active;
+			}
+		}
+
+		&--submit {
+			background-color: $primary-color;
+
+			&:hover {
+				background-color: $primary-color-hover;
+			}
+
+			&:active {
+				background-color: $primary-color-active;
+			}
+		}
+	}
+}
+
+.remove {
+	position: relative;
+	font-size: 30px;
+	height: 0.5em;
+	width: 0.4em;
+	margin-top: 10px;
+	border: 0.07em solid $remove-color;
+	border-radius: 0 0 0.05em 0.05em;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .1);
+	background-image: linear-gradient(
+		to right,
+		transparent 0.17em,
+		$remove-color 0.17em,
+		$remove-color 0.24em,
+		transparent 0.24em
+	);
+
+	&::before {
+		position: absolute;
+		left: -0.125em;
+		bottom: 0.6em;
+		height: 0.07em;
+		width: 0.65em;
+		content: "";
+		background-color: $remove-color;
+	}
+
+	&::after {
+		position: absolute;
+		left: 0.055em;
+		bottom: 0.67em;
+		height: 0;
+		width: 0.25em;
+		content: "";
+		border-bottom: 0.07em solid $remove-color;
+		border-left: 0.02em solid transparent;
+		border-right: 0.02em solid transparent;
+	}
+
+	&--field {
+		font-size: 25px;
+		margin-left: 0.25em;
+		margin-top: 0.2em;
+	}
+
+	&:hover {
+		border-color: $alert-color;
+		background-image: linear-gradient(
+			to right,
+			transparent 0.17em,
+			$alert-color 0.17em,
+			$alert-color 0.24em,
+			transparent 0.24em
+		);
+
+		&::after {
+			border-color: $alert-color;
+		}
+
+		&::before {
+			background-color: $alert-color;
+		}
+	}
+
+	&:active {
+		opacity: 0.5;
+	}
+}
