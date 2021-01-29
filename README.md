@@ -1,4 +1,4 @@
-# [test-vue](https://senior-pomidor.github.io/test-vue/)
+# [PhoneBook-Vue](https://senior-pomidor.github.io/PhoneBook-Vue/)
 
 ## Project setup
 ```
